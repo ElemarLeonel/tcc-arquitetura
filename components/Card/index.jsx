@@ -1,17 +1,24 @@
 import Image from "next/image";
-import style from "../Card"
+import style from "./style.module.css"
+import Link from 'next/link'
 
-export default function Card({titulo, autor, orientador, capa, ...props}){
-  return(
-    <div {...props} className="card">
-        <Image 
+export default function Card({ id, titulo, autor, orientador, capa, ...props }) {
+  return (
+    <Link href={`/pagina/${id}`}>
+      <div {...props} className={style.card}>
+        <Image
           src={capa}
           width="387"
           height="282"
+          className={style.imagem}
+          alt="Imagem"
         />
-        <h2>{titulo}</h2>
-        <div>Autor(a): {autor}</div>
-        <div>Orientador(a): {orientador}</div>
-    </div>
+        <div className={style.dados}>
+          <h4>{titulo}</h4>
+          <p>Autor(a): {autor}</p>
+          <p>Orientador(a): {orientador}</p>
+        </div>
+      </div>
+    </Link>
   )
 }
